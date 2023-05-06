@@ -50,6 +50,10 @@ const Login = () => {
 
  }
 
+ const signupUser = () =>{
+     
+ }
+
   return (
     <Component>
      <Box>
@@ -70,7 +74,7 @@ const Login = () => {
       <TextField variant="standard" name="username" onChange={(e)=> onInputChange(e)} label="Enter Your Username"/>
       <TextField variant="standard" name="password" onChange={(e)=> onInputChange(e)} label="Enter Your Password"/>
 
-      <LoginButton variant="contained">Signup</LoginButton>
+      <LoginButton onClick={()=> signupUser()} variant="contained">Signup</LoginButton>
       <Typography level="h2" style={{textAlign: "center"}}>OR</Typography>
       <LoginButton onClick={()=> toggleSignup()} variant="contained">Already have an Account</LoginButton>
       </Wrapper>
