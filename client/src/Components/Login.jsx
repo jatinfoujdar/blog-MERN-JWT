@@ -10,7 +10,7 @@ const Component = styled(Box)`
  `
 
  const Image = styled("img")({
-  width: 100,
+  width: 120,
   margin: "auto",
   display: "flex",
   padding: "50px 0 0",
@@ -25,6 +25,11 @@ const Component = styled(Box)`
     margin-top : 20px
   }
  `
+   const SignupInitialValues = {
+    name : "",
+    username: "",
+    password: "",
+   }
 
  const LoginButton = styled(Button)`
       text-transform: none;
@@ -35,10 +40,16 @@ const Component = styled(Box)`
 
 const Login = () => {
   const [account , setAccount] = useState("login");
+  const [signup , setSignup] = useState(SignupInitialValues)
 
-  const toggleSignup=()=>{
+  const toggleSignup = () => {
     account === "signup" ? setAccount("login"): setAccount ("signup");
   }
+ const onInputChange = (e) => {
+   setSignup({...signup,[e.target.name]: e.target.value});
+
+ }
+
   return (
     <Component>
      <Box>
@@ -47,17 +58,17 @@ const Login = () => {
         account === "login" ? 
       
        <Wrapper>
-      <TextField variant="standard" label="Enter Your Username"/>
-      <TextField variant="standard" label="Enter Your Password"/>
+      <TextField variant="standard"  label="Enter Your Username"/>
+      <TextField variant="standard"  label="Enter Your Password"/>
       <LoginButton variant="contained">Login</LoginButton>
       <Typography level="h2" style={{textAlign: "center"}}>OR</Typography>
       <LoginButton onClick={()=> toggleSignup()} variant="contained">Create an Account</LoginButton>
       </Wrapper> 
       :
       <Wrapper>
-      <TextField variant="standard" label="Enter Your Name"/>
-      <TextField variant="standard" label="Enter Your Username"/>
-      <TextField variant="standard" label="Enter Your Password"/>
+      <TextField variant="standard" name="name" onChange={(e)=> onInputChange(e)} label="Enter Your Name"/>
+      <TextField variant="standard" name="username" onChange={(e)=> onInputChange(e)} label="Enter Your Username"/>
+      <TextField variant="standard" name="password" onChange={(e)=> onInputChange(e)} label="Enter Your Password"/>
 
       <LoginButton variant="contained">Signup</LoginButton>
       <Typography level="h2" style={{textAlign: "center"}}>OR</Typography>
