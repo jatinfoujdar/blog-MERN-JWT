@@ -23,3 +23,12 @@ export const API_NOTIFICATION_MESSAGES = {
         message: "unable to connect to server "
     }
 }
+
+
+//Api service call
+//sample req
+//need service call :{url : "/",method : "put/get/put/delete" params: t/f , query: t/f}
+
+export const SERVICE_URLS={
+    userSignup:{url: "/signup",method: "POST"}
+}
