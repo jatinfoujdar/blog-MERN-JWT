@@ -31,27 +31,27 @@ axiosInstance.interceptors.response.use(
     }
 )
 
-const processResponce = (res) => {
-    if(res?.status === 200){
-        return{isSucess: true, data: Response.data}
+const processResponce = (response) => {
+    if(response?.status === 200){
+        return{isSuccess: true, data: response.data}
     }else{
         return{
         isFailure: true,
-        status: res?.status,
-        msg: res?.msg,
-        code: res?.code,    
+        status: response?.status,
+        msg: response?.msg,
+        code: response?.code,    
     }
     }
 }
 
 const processError = (error) =>{
-      if (error.res) {
+      if (error.response) {
         //req made and server responded with a status
         console.log("error in res",error.toJSON());
         return{
             isError :true,
             msg : API_NOTIFICATION_MESSAGES.resFailure,
-            code: error.res.status
+            code: error.response.status
 
         }
       } else if(error.req){

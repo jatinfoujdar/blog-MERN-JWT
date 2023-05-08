@@ -12,7 +12,7 @@ export const API_NOTIFICATION_MESSAGES = {
     },
     resFailure:{
         title: "Error",
-        message: "Error occured while fetching while parsing res data"
+        message: "Error occured while fetching  parsing res data"
     },
     reqFailure:{
         title: "Error",

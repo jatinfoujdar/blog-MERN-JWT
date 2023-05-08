@@ -1,14 +1,19 @@
-import user from "../model/user.js";
+import User from "../model/user.js";
+import bcrypt from "bcrypt"
 
-export const signupUser = async (req, res) => {
-    try {
-      const user = req.body;
-  
-      const newUser = new User(user);
-      await newUser.save();
-  
-      return res.status(200).json({ msg: "SignUp successful" });
-    } catch (error) {
-      return res.status(500).json({ msg: "Error while signing up user" });
-    }
-  }
+export const signupUser = async(req,res) => {
+try {
+  // const salt = await bcrypt.genSalt();
+  const hashPassword = await bcrypt.hash(req.body.password,10)
+    const user = {username: req.body.username,name: req.body.name,password: hashPassword};
+
+    const newUser = new User(user);
+    await newUser.save();
+
+    return res.status(200).json({msg: "signUp successfull"})
+} 
+catch (error) {
+    return res.status(500).json({msg: "Error while Signup user"})
+}
+
+}

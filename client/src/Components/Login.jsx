@@ -55,9 +55,9 @@ const Login = () => {
   const toggleSignup = () => {
     account === "signup" ? setAccount("login"): setAccount ("signup");
   }
+
  const onInputChange = (e) => {
    setSignup({...signup,[e.target.name]: e.target.value});
-
  }
 
  const signupUser = async() =>{
@@ -81,6 +81,7 @@ const Login = () => {
        <Wrapper>
       <TextField variant="standard"  label="Enter Your Username"/>
       <TextField variant="standard"  label="Enter Your Password"/>
+      {error && <Error>{error}</Error>}
       <LoginButton variant="contained">Login</LoginButton>
       <Typography level="h2" style={{textAlign: "center"}}>OR</Typography>
       <LoginButton onClick={()=> toggleSignup()} variant="contained">Create an Account</LoginButton>
