@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Box, TextField, Button, styled,Typography} from "@mui/material";
 import { LogoIMG } from '../Config/constant';
-
+import { API } from '../service/api';
 
 const Component = styled(Box)`
  width: 400px;
@@ -50,8 +50,8 @@ const Login = () => {
 
  }
 
- const signupUser = () =>{
-     
+ const signupUser = async() =>{
+    let response = await API.userSignup(signup);
  }
 
   return (

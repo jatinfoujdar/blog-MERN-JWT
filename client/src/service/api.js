@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 })
 
 
-axiosInstance.interceptors.req.use(
+axiosInstance.interceptors.request.use(
     function(config){
         return config;
     },
@@ -21,10 +21,10 @@ axiosInstance.interceptors.req.use(
     }
 )
 
-axiosInstance.interceptors.res.use(
-    function(res){
+axiosInstance.interceptors.response.use(
+    function(response){
        //stop global loader here
-       return processResponce(res)
+       return processResponce(response)
     },
     function (error){
         return Promise.reject(processError(error))
@@ -38,8 +38,8 @@ const processResponce = (res) => {
         return{
         isFailure: true,
         status: res?.status,
-        msg: response?.msg,
-        code: response?.code,    
+        msg: res?.msg,
+        code: res?.code,    
     }
     }
 }
@@ -100,3 +100,5 @@ for(const [key,value]of Object.entries(SERVICE_URLS)){
         })
     
 }
+
+export {API};
