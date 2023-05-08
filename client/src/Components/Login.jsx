@@ -37,10 +37,20 @@ const Component = styled(Box)`
       height: 48px;
       box-shadow: 0 2px 4px 0 rgb(0 0 0/ 20%)
  `
+ const Error = styled(Typography)`
+      
+      font-size: 10px;
+      color: #ff6161;
+      line-height: 0;
+      margin-top: 10px;
+      font-weight: 600;
+
+ `
 
 const Login = () => {
   const [account , setAccount] = useState("login");
-  const [signup , setSignup] = useState(SignupInitialValues)
+  const [signup , setSignup] = useState(SignupInitialValues);
+  const [error,setError] = useState("")
 
   const toggleSignup = () => {
     account === "signup" ? setAccount("login"): setAccount ("signup");
@@ -52,6 +62,13 @@ const Login = () => {
 
  const signupUser = async() =>{
     let response = await API.userSignup(signup);
+    if(response.isSuccess){
+      setError("")
+      setSignup(SignupInitialValues);
+      toggleSignup("login");
+    }else{
+          setError("something went wrong! please try it later");
+    }
  }
 
   return (
@@ -73,7 +90,8 @@ const Login = () => {
       <TextField variant="standard" name="name" onChange={(e)=> onInputChange(e)} label="Enter Your Name"/>
       <TextField variant="standard" name="username" onChange={(e)=> onInputChange(e)} label="Enter Your Username"/>
       <TextField variant="standard" name="password" onChange={(e)=> onInputChange(e)} label="Enter Your Password"/>
-
+      
+      {error && <Error>{error}</Error>}
       <LoginButton onClick={()=> signupUser()} variant="contained">Signup</LoginButton>
       <Typography level="h2" style={{textAlign: "center"}}>OR</Typography>
       <LoginButton onClick={()=> toggleSignup()} variant="contained">Already have an Account</LoginButton>
