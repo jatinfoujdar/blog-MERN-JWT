@@ -3,6 +3,7 @@ import {Box, TextField, Button, styled,Typography} from "@mui/material";
 import { LogoIMG } from '../Config/constant';
 import { API } from '../service/api';
 import { DataContext } from '../constant/DataProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Component = styled(Box)`
  width: 400px;
@@ -53,13 +54,14 @@ const SignupInitialValues = {
   username: "",
   password: "",
  }
-const Login = () => {
+const Login = ({setUserAuthenticated}) => {
   const [account , setAccount] = useState("login");
   const [signup , setSignup] = useState(SignupInitialValues);
   const [login , setLogin] = useState(loginInitialValues)
   const [error,setError] = useState("");
   
-  const {setAccounts} = useContext(DataContext)
+  const {setAccounts} = useContext(DataContext);
+  const navigate = useNavigate();
 
   const toggleSignup = () => {
     account === "signup" ? setAccount("login"): setAccount ("signup");
@@ -80,6 +82,8 @@ const Login = () => {
     }
  }
 
+
+
   const onValueChange = (e)=>{
     // e.target.name is a key
    setLogin({...login,[e.target.name]: e.target.value})
@@ -92,7 +96,8 @@ const Login = () => {
       sessionStorage.setItem("refreshToken", `Bearer ${response.data.refreshToken}`);
       
       setAccounts({username: response.data.username , name: response.data.name})
-
+      setUserAuthenticated(true);
+      navigate("/");
     }else{
           setError("something went wrong! please try it later");
     }
