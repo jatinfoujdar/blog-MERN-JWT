@@ -25,11 +25,8 @@ const Component = styled(Box)`
     margin-top : 20px
   }
  `
-   const SignupInitialValues = {
-    name : "",
-    username: "",
-    password: "",
-   }
+
+   
 
  const LoginButton = styled(Button)`
       text-transform: none;
@@ -46,10 +43,19 @@ const Component = styled(Box)`
       font-weight: 600;
 
  `
-
+ const loginInitialValues = {
+  username : "",
+  password : ""
+}
+const SignupInitialValues = {
+  name : "",
+  username: "",
+  password: "",
+ }
 const Login = () => {
   const [account , setAccount] = useState("login");
   const [signup , setSignup] = useState(SignupInitialValues);
+  const [login , setLogin] = useState(loginInitialValues)
   const [error,setError] = useState("")
 
   const toggleSignup = () => {
@@ -60,7 +66,7 @@ const Login = () => {
    setSignup({...signup,[e.target.name]: e.target.value});
  }
 
- const signupUser = async() =>{
+ const signupUser = async() => {
     let response = await API.userSignup(signup);
     if(response.isSuccess){
       setError("")
@@ -71,6 +77,20 @@ const Login = () => {
     }
  }
 
+  const onValueChange = (e)=>{
+    // e.target.name is a key
+   setLogin({...login,[e.target.name]: e.target.value})
+  }
+  const loginUser = async() => {
+    let response = await API.userLogin(login);
+    if(response.isSuccess){
+      setError("")
+      
+    }else{
+          setError("something went wrong! please try it later");
+    }
+  }
+
   return (
     <Component>
      <Box>
@@ -79,10 +99,11 @@ const Login = () => {
         account === "login" ? 
       
        <Wrapper>
-      <TextField variant="standard"  label="Enter Your Username"/>
-      <TextField variant="standard"  label="Enter Your Password"/>
+      <TextField variant="standard" value={login.username} onChange={(e)=> onValueChange(e)} name="username" label="Enter Your Username"/>
+      <TextField variant="standard" value={login.password} onChange={(e)=> onValueChange(e)} name="password"  label="Enter Your Password"/>
+
       {error && <Error>{error}</Error>}
-      <LoginButton variant="contained">Login</LoginButton>
+      <LoginButton variant="contained" onClick={()=>{ loginUser()}}>Login</LoginButton>
       <Typography level="h2" style={{textAlign: "center"}}>OR</Typography>
       <LoginButton onClick={()=> toggleSignup()} variant="contained">Create an Account</LoginButton>
       </Wrapper> 
