@@ -7,9 +7,10 @@ import {BrowserRouter , Routes, Route,Navigate ,Outlet} from "react-router-dom"
 import { useState } from 'react';
 
 
-const PrivateRoute = ({setUserAuthenticated, ...props}) => {
-  return setUserAuthenticated ? 
+const PrivateRoute = ({isAuthenticated, ...props}) => {
+  return isAuthenticated ? 
   <>
+  <Header/>
   <Outlet/>
   </>:
   <Navigate replace to= "/login"/>
@@ -24,7 +25,7 @@ function App() {
    
     <DataProvider>
       <BrowserRouter>
-      <Header/>
+      
        <div style={{marginTop: 64}}>
           <Routes>
             <Route path='/login' element={<Login setUserAuthenticated={setUserAuthenticated} />}  />

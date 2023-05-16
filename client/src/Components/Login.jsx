@@ -71,6 +71,7 @@ const Login = ({setUserAuthenticated}) => {
    setSignup({...signup,[e.target.name]: e.target.value});
  }
 
+ //signup
  const signupUser = async() => {
     let response = await API.userSignup(signup);
     if(response.isSuccess){
