@@ -11,12 +11,21 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 ` 
+ const Heading = styled(Typography)`
+ font-size: 70px;
+ line-height: 1
+ `
+ const SubHeading = styled(Typography)`
+ font-size: 20px;
+
+ `
+
 
 const Banner = () => {
   return (
     <Image>
-        <Typography>Blog</Typography>
-        <Typography>Jatin Foujdar</Typography>
+        <Heading>Blog</Heading>
+        <SubHeading>Jatin Foujdar</SubHeading>
     </Image>
   )
 }
