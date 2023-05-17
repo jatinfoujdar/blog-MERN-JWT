@@ -1,13 +1,25 @@
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import React from 'react'
-import { categories } from '../../constant/data'
+import { categories } from '../../constant/data';
+import styled from '@emotion/styled';
+
+const StyledTable = styled(Table)`
+border: 1px solid rgba(224 ,224 ,224,1);
+`
+
+const StyledButton = styled(Button)`
+margin: 20px;
+width: 85%;
+background: #03b6fc;
+color: #fff;
+`
 
 const Categories = () => {
   return (
     <div>
         <>
-        <Button>Create Blogs</Button>
-        <Table>
+        <StyledButton variant='contained'>Create Blogs</StyledButton>
+        <StyledTable>
             <TableHead>
                 <TableRow>
                     <TableCell>
@@ -28,7 +40,7 @@ const Categories = () => {
                
                 
             </TableBody>
-        </Table>
+        </StyledTable>
         </>
     </div>
   )
