@@ -11,6 +11,7 @@ const Component = styled(Box)`
  box-shadow: 5px 2px 5px 2px rgb(0 0 0/ 0.6);
  `
 
+
  const Image = styled("img")({
   width: 120,
   margin: "auto",
@@ -105,6 +106,7 @@ const Login = ({setUserAuthenticated}) => {
   }
 
   return (
+  
     <Component>
      <Box>
       <Image src={LogoIMG} alt='logo'/>
@@ -134,6 +136,7 @@ const Login = ({setUserAuthenticated}) => {
 }
      </Box>
     </Component>
+ 
   )
 }
 

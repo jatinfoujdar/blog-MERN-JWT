@@ -24,7 +24,7 @@ flex-direction: column;
 const Banner = () => {
   return (
     <Image>
-        <Heading>Blog</Heading>
+        <Heading>BLOG</Heading>
         <SubHeading>Jatin Foujdar</SubHeading>
     </Image>
   )

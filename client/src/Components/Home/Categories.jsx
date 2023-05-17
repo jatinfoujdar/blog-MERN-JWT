@@ -1,5 +1,6 @@
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import React from 'react'
+import { categories } from '../../constant/data'
 
 const Categories = () => {
   return (
@@ -15,11 +16,17 @@ const Categories = () => {
                 </TableRow>
             </TableHead>
             <TableBody>
-                <TableRow>
-                    <TableCell>
-                        Music
-                    </TableCell>
-                </TableRow>
+            {
+           categories.map(category =>(
+                            <TableRow key={category.id}>
+                            <TableCell>
+                            {category.type}
+                            </TableCell>
+                            </TableRow>
+                        ))
+                    }
+               
+                
             </TableBody>
         </Table>
         </>
