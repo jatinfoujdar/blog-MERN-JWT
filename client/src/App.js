@@ -5,6 +5,7 @@ import Login from './Components/Login';
 import DataProvider from './constant/DataProvider';
 import {BrowserRouter , Routes, Route,Navigate ,Outlet} from "react-router-dom"
 import { useState } from 'react';
+import CreatePost from './Components/Home/CreatePost';
 
 
 const PrivateRoute = ({isAuthenticated, ...props}) => {
@@ -32,6 +33,11 @@ function App() {
             <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated}/>}>
             <Route path='/' element={<Home/>}/>
             </Route>
+
+            <Route path='/create' element={<PrivateRoute isAuthenticated={isAuthenticated}/>}>
+            <Route path='/create' element={<CreatePost/>}/>
+            </Route>
+
           </Routes>
         </div>
       </BrowserRouter>

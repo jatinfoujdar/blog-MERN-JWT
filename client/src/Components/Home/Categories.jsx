@@ -2,6 +2,7 @@ import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/m
 import React from 'react'
 import { categories } from '../../constant/data';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 const StyledTable = styled(Table)`
 border: 1px solid rgba(224 ,224 ,224,1);
@@ -18,7 +19,10 @@ const Categories = () => {
   return (
     <div>
         <>
+        <Link to="/create" style={{textDecoration: "none"}}>
         <StyledButton variant='contained'>Create Blogs</StyledButton>
+        </Link>
+      
         <StyledTable>
             <TableHead>
                 <TableRow>
