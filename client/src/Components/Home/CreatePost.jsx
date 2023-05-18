@@ -1,6 +1,7 @@
 import { Box, Button, FormControl,  InputBase, TextareaAutosize } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import { createpostimage } from '../../Config/constant'
+import {API} from "../../service/api"
 import styled from '@emotion/styled'
 import {AddCircle as Add} from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
@@ -50,15 +51,19 @@ const CreatePost = () => {
     const location = useLocation();
     const {account} = useContext(DataContext);
 
+    const createpostimage = post.picture ? post.picture: createpostimage
+
     useEffect(()=>{
-    const getImage = ()=>{
+    const getImage = async()=>{
      if(file){
         const data = new FormData();
         data.append("name",file.name);
         data.append("file",file);
 
         //api call to upload a image
-        //post.picture = ""
+        const response = await API.uploadFile(data);
+        // url
+        post.picture = response.data
      }
     }
     getImage();
