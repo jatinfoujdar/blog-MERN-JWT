@@ -2,7 +2,7 @@ import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/m
 import React from 'react'
 import { categories } from '../../constant/data';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const StyledTable = styled(Table)`
 border: 1px solid rgba(224 ,224 ,224,1);
@@ -14,20 +14,27 @@ width: 85%;
 background: #03b6fc;
 color: #fff;
 `
+const StyledLink = styled(Link)`
+text-decoration: none;
+`
 
 const Categories = () => {
+    const [searchParams] = useSearchParams();
+    const category= searchParams.get("category");
   return (
     <div>
         <>
-        <Link to="/create" style={{textDecoration: "none"}}>
+        <StyledLink to={`/create?category=${category || ``}`} >
         <StyledButton variant='contained'>Create Blogs</StyledButton>
-        </Link>
+        </StyledLink>
       
         <StyledTable>
             <TableHead>
                 <TableRow>
                     <TableCell>
-                        All Categorious
+                        <StyledLink to="/">
+                             All Categorious
+                        </StyledLink>
                     </TableCell>
                 </TableRow>
             </TableHead>
@@ -36,7 +43,9 @@ const Categories = () => {
            categories.map(category =>(
                             <TableRow key={category.id}>
                             <TableCell>
+                                <Link to={`/?category=${category.type}`}>
                             {category.type}
+                            </Link>
                             </TableCell>
                             </TableRow>
                         ))
