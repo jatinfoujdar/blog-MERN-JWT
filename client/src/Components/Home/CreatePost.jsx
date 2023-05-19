@@ -51,7 +51,9 @@ const CreatePost = () => {
     const location = useLocation();
     const {account} = useContext(DataContext);
 
-    const createpostimage = post.picture ? post.picture: createpostimage
+    // const createpostimage = post.picture ? post.picture: createpostimage
+    const defaultImage = post.picture ? post.picture : createpostimage;
+
 
     useEffect(()=>{
     const getImage = async()=>{
